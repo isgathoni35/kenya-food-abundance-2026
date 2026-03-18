@@ -1,0 +1,6 @@
+# Libraries for a Kenya food security map
+
+streamlit
+folium
+pandas
+streamlit-folium
