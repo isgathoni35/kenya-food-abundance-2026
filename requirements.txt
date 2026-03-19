@@ -4,3 +4,4 @@ streamlit
 folium
 pandas
 streamlit-folium
+requests

@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#00E676" # A vibrant, high-energy bio-green for sliders and accents
+backgroundColor = "#0F172A" # A deep, premium slate-blue/dark background
+secondaryBackgroundColor = "#1E293B" # Slightly lighter slate to separate the sidebar
+textColor = "#F8FAFC" # Crisp, off-white text for maximum legibility
+font = "sans serif"
