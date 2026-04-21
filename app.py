@@ -19,6 +19,13 @@ WEATHER_CACHE_TTL_SECONDS = 60
 WEATHER_RETRY_ATTEMPTS = 3
 WEATHER_PRIMARY_TIMEOUT_SECONDS = 10
 WEATHER_SECONDARY_TIMEOUT_SECONDS = 8
+GROUP_MEMBERS = [
+    "Naimadu Madina Naserian - H12/4972/2020",
+    "Parsley Mboya Ngaira - H12/1778/2022",
+    "Matilda Valerie Odalo - H12/3174/2022",
+    "Gathoni Elias Warutere - H12/1790/2022",
+    "Brianna Muchiku - H12/1777/2022",
+]
 
 # 1.1 Custom Theme Fix (To ensure dark mode with custom primary color)
 # We can optionally hide this later if dark mode base works
@@ -306,6 +313,9 @@ fert_factor = st.sidebar.slider("Fertilizer Subsidy Impact", 0.5, 1.5, 1.0, help
 # ==========================================
 st.title("Kenya Food Abundance & Meteorological Mapping 2026")
 st.write("University of Nairobi | Food and Microbial Biochemistry Analysis")
+st.subheader("Group Members")
+for member in GROUP_MEMBERS:
+    st.markdown(f"- {member}")
 
 # Prepare Data (Hypothetical maize yield baseline for major counties)
 mock_data = []
