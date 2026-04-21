@@ -1,9 +1,11 @@
+import json
+import os
+from pathlib import Path
+
+import folium
 import pandas as pd
 import streamlit as st
-import folium
 from streamlit_folium import st_folium
-from pathlib import Path
-import os
 
 from src.weather_normalization import build_forecast_frame
 from src.weather_providers import fetch_weather_cascade
@@ -12,6 +14,7 @@ from src.weather_providers import fetch_weather_cascade
 st.set_page_config(layout="wide", page_title="Kenya Food Abundance 2026")
 
 COUNTY_DATA_PATH = Path(__file__).resolve().parent / "data" / "kenya_counties_baseline.csv"
+PREDICTIONS_2026_PATH = Path(__file__).resolve().parent / "data" / "processed" / "2026_predictions.csv"
 WEATHER_CACHE_TTL_SECONDS = 60
 WEATHER_RETRY_ATTEMPTS = 3
 WEATHER_PRIMARY_TIMEOUT_SECONDS = 10
@@ -43,6 +46,53 @@ def load_county_data(path):
     counties = counties.drop_duplicates(subset=["County"], keep="first")
     counties = counties.sort_values("County").reset_index(drop=True)
     return counties
+
+
+@st.cache_data(ttl=300)
+def load_prediction_data(path):
+    prediction_cols = ["County", "Predicted_Yield_Bags_2026", "CI_Lower_90", "CI_Upper_90"]
+    if not Path(path).exists():
+        return pd.DataFrame(columns=prediction_cols)
+
+    pred = pd.read_csv(path)
+    required_cols = {"County", "Predicted_Yield_Bags_2026"}
+    if not required_cols.issubset(set(pred.columns)):
+        return pd.DataFrame(columns=prediction_cols)
+
+    # Keep only app-consumed prediction fields so structural columns never collide on merge.
+    pred = pred[[c for c in prediction_cols if c in pred.columns]].copy()
+
+    pred["County"] = pred["County"].astype(str).str.strip()
+    for col in ["Predicted_Yield_Bags_2026", "CI_Lower_90", "CI_Upper_90"]:
+        if col in pred.columns:
+            pred[col] = pd.to_numeric(pred[col], errors="coerce")
+
+    return pred
+
+
+@st.cache_data(ttl=300)
+def load_model_metrics(path):
+    metrics_path = Path(path)
+    if not metrics_path.exists():
+        return {}
+    try:
+        return json.loads(metrics_path.read_text())
+    except Exception:
+        return {}
+
+
+@st.cache_data(ttl=300)
+def load_model_coefficients(path):
+    coeff_path = Path(path)
+    if not coeff_path.exists():
+        return pd.DataFrame()
+    try:
+        frame = pd.read_csv(coeff_path)
+    except Exception:
+        return pd.DataFrame()
+    if not {"Feature", "Coefficient"}.issubset(frame.columns):
+        return pd.DataFrame()
+    return frame
 
 
 def validate_county_data(counties):
@@ -134,6 +184,22 @@ st.sidebar.title("☁️ Live Weather Station")
 
 counties_df = load_county_data(COUNTY_DATA_PATH)
 counties_df, county_issues, invalid_counties = validate_county_data(counties_df)
+predictions_df = load_prediction_data(PREDICTIONS_2026_PATH)
+
+if not predictions_df.empty:
+    counties_df = counties_df.merge(predictions_df, on="County", how="left")
+else:
+    counties_df["Predicted_Yield_Bags_2026"] = pd.NA
+
+# Defensive guard: keep a canonical Zone column even if upstream schema drifts.
+if "Zone" not in counties_df.columns:
+    if "Zone_x" in counties_df.columns:
+        counties_df["Zone"] = counties_df["Zone_x"]
+    elif "Zone_y" in counties_df.columns:
+        counties_df["Zone"] = counties_df["Zone_y"]
+    else:
+        counties_df["Zone"] = "Unknown"
+        st.warning("Zone metadata missing from merged county data. Using fallback zone label.")
 
 if county_issues:
     st.warning("County data quality checks found issues: " + " | ".join(county_issues))
@@ -243,15 +309,28 @@ st.write("University of Nairobi | Food and Microbial Biochemistry Analysis")
 
 # Prepare Data (Hypothetical maize yield baseline for major counties)
 mock_data = []
+prediction_mode = False
 for _, c in counties_df.iterrows():
+    predicted_base = c.get("Predicted_Yield_Bags_2026")
+    if pd.notna(predicted_base):
+        base_yield = float(predicted_base)
+        prediction_mode = True
+    else:
+        base_yield = float(c["Base_Yield"])
+
     mock_data.append({
         "County": c["County"],
         "Zone": c["Zone"],
-        "Simulated_Yield": int(max(c["Base_Yield"] * rain_factor * fert_factor, 0)),
+        "Simulated_Yield": int(max(base_yield * rain_factor * fert_factor, 0)),
         "Lat": c["Lat"],
         "Lon": c["Lon"],
     })
 df = pd.DataFrame(mock_data)
+
+if prediction_mode:
+    st.caption("Yield base source: 2026 model predictions from data/processed/2026_predictions.csv")
+else:
+    st.caption("Yield base source: baseline county assumptions (prediction file not found)")
 
 # Layout for Map and Data Table
 col_m, col_t = st.columns([2, 1])
@@ -332,3 +411,21 @@ with c2:
 with c3:
     st.subheader("🇺🇸 America")
     st.write("**Model:** Industrial & Genetic. Relies on GMO drought-resistance and massive irrigation infrastructure.")
+
+st.divider()
+st.header("Model Evidence")
+metrics = load_model_metrics(Path(__file__).resolve().parent / "data" / "processed" / "validation_metrics.json")
+coefficients = load_model_coefficients(Path(__file__).resolve().parent / "data" / "processed" / "model_coefficients.csv")
+
+if metrics:
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("RMSE", f"{metrics.get('rmse', 0):,.0f}")
+    m2.metric("MAE", f"{metrics.get('mae', 0):,.0f}")
+    m3.metric("R²", f"{metrics.get('r2', 0):.3f}")
+    m4.metric("Counties", f"{metrics.get('county_predictions', 0)}")
+    st.caption("This panel reads from the generated files in data/processed/.")
+else:
+    st.info("Run the prediction pipeline to generate model metrics and coefficients.")
+
+if not coefficients.empty:
+    st.dataframe(coefficients.head(12), use_container_width=True, hide_index=True)

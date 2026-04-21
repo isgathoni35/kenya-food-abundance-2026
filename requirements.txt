@@ -5,3 +5,5 @@ folium
 pandas
 streamlit-folium
 requests
+numpy
+scikit-learn

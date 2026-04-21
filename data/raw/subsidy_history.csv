@@ -1,0 +1,236 @@
+County,Year,Subsidy_Tonnes
+Mombasa,2020,1510.5
+Mombasa,2021,1590.0
+Mombasa,2022,1637.7
+Mombasa,2023,1685.4
+Mombasa,2026,1685.4
+Kwale,2020,1573.2
+Kwale,2021,1656.0
+Kwale,2022,1705.7
+Kwale,2023,1755.4
+Kwale,2026,1755.4
+Kilifi,2020,1531.4
+Kilifi,2021,1612.0
+Kilifi,2022,1660.4
+Kilifi,2023,1708.7
+Kilifi,2026,1708.7
+Tana River,2020,1092.5
+Tana River,2021,1150.0
+Tana River,2022,1184.5
+Tana River,2023,1219.0
+Tana River,2026,1219.0
+Lamu,2020,1301.5
+Lamu,2021,1370.0
+Lamu,2022,1411.1
+Lamu,2023,1452.2
+Lamu,2026,1452.2
+Taita Taveta,2020,1406.0
+Taita Taveta,2021,1480.0
+Taita Taveta,2022,1524.4
+Taita Taveta,2023,1568.8
+Taita Taveta,2026,1568.8
+Garissa,2020,988.0
+Garissa,2021,1040.0
+Garissa,2022,1071.2
+Garissa,2023,1102.4
+Garissa,2026,1102.4
+Wajir,2020,883.5
+Wajir,2021,930.0
+Wajir,2022,957.9
+Wajir,2023,985.8
+Wajir,2026,985.8
+Mandera,2020,862.6
+Mandera,2021,908.0
+Mandera,2022,935.2
+Mandera,2023,962.5
+Mandera,2026,962.5
+Marsabit,2020,946.2
+Marsabit,2021,996.0
+Marsabit,2022,1025.9
+Marsabit,2023,1055.8
+Marsabit,2026,1055.8
+Isiolo,2020,1029.8
+Isiolo,2021,1084.0
+Isiolo,2022,1116.5
+Isiolo,2023,1149.0
+Isiolo,2026,1149.0
+Meru,2020,2074.8
+Meru,2021,2184.0
+Meru,2022,2249.5
+Meru,2023,2315.0
+Meru,2026,2315.0
+Tharaka-Nithi,2020,1719.5
+Tharaka-Nithi,2021,1810.0
+Tharaka-Nithi,2022,1864.3
+Tharaka-Nithi,2023,1918.6
+Tharaka-Nithi,2026,1918.6
+Embu,2020,1949.4
+Embu,2021,2052.0
+Embu,2022,2113.6
+Embu,2023,2175.1
+Embu,2026,2175.1
+Kitui,2020,1447.8
+Kitui,2021,1524.0
+Kitui,2022,1569.7
+Kitui,2023,1615.4
+Kitui,2026,1615.4
+Machakos,2020,1406.0
+Machakos,2021,1480.0
+Machakos,2022,1524.4
+Machakos,2023,1568.8
+Machakos,2026,1568.8
+Makueni,2020,1426.9
+Makueni,2021,1502.0
+Makueni,2022,1547.1
+Makueni,2023,1592.1
+Makueni,2026,1592.1
+Nyandarua,2020,1991.2
+Nyandarua,2021,2096.0
+Nyandarua,2022,2158.9
+Nyandarua,2023,2221.8
+Nyandarua,2026,2221.8
+Nyeri,2020,2033.0
+Nyeri,2021,2140.0
+Nyeri,2022,2204.2
+Nyeri,2023,2268.4
+Nyeri,2026,2268.4
+Kirinyaga,2020,2012.1
+Kirinyaga,2021,2118.0
+Kirinyaga,2022,2181.5
+Kirinyaga,2023,2245.1
+Kirinyaga,2026,2245.1
+Murang'a,2020,1970.3
+Murang'a,2021,2074.0
+Murang'a,2022,2136.2
+Murang'a,2023,2198.4
+Murang'a,2026,2198.4
+Kiambu,2020,1907.6
+Kiambu,2021,2008.0
+Kiambu,2022,2068.2
+Kiambu,2023,2128.5
+Kiambu,2026,2128.5
+Turkana,2020,779.0
+Turkana,2021,820.0
+Turkana,2022,844.6
+Turkana,2023,869.2
+Turkana,2026,869.2
+West Pokot,2020,1615.0
+West Pokot,2021,1700.0
+West Pokot,2022,1751.0
+West Pokot,2023,1802.0
+West Pokot,2026,1802.0
+Samburu,2020,988.0
+Samburu,2021,1040.0
+Samburu,2022,1071.2
+Samburu,2023,1102.4
+Samburu,2026,1102.4
+Trans Nzoia,2020,2242.0
+Trans Nzoia,2021,2360.0
+Trans Nzoia,2022,2430.8
+Trans Nzoia,2023,2501.6
+Trans Nzoia,2026,2501.6
+Uasin Gishu,2020,2346.5
+Uasin Gishu,2021,2470.0
+Uasin Gishu,2022,2544.1
+Uasin Gishu,2023,2618.2
+Uasin Gishu,2026,2618.2
+Elgeyo-Marakwet,2020,1865.8
+Elgeyo-Marakwet,2021,1964.0
+Elgeyo-Marakwet,2022,2022.9
+Elgeyo-Marakwet,2023,2081.8
+Elgeyo-Marakwet,2026,2081.8
+Nandi,2020,2137.5
+Nandi,2021,2250.0
+Nandi,2022,2317.5
+Nandi,2023,2385.0
+Nandi,2026,2385.0
+Baringo,2020,1364.2
+Baringo,2021,1436.0
+Baringo,2022,1479.1
+Baringo,2023,1522.2
+Baringo,2026,1522.2
+Laikipia,2020,1656.8
+Laikipia,2021,1744.0
+Laikipia,2022,1796.3
+Laikipia,2023,1848.6
+Laikipia,2026,1848.6
+Nakuru,2020,1928.5
+Nakuru,2021,2030.0
+Nakuru,2022,2090.9
+Nakuru,2023,2151.8
+Nakuru,2026,2151.8
+Narok,2020,1782.2
+Narok,2021,1876.0
+Narok,2022,1932.3
+Narok,2023,1988.6
+Narok,2026,1988.6
+Kajiado,2020,1322.4
+Kajiado,2021,1392.0
+Kajiado,2022,1433.8
+Kajiado,2023,1475.5
+Kajiado,2026,1475.5
+Kericho,2020,2095.7
+Kericho,2021,2206.0
+Kericho,2022,2272.2
+Kericho,2023,2338.4
+Kericho,2026,2338.4
+Bomet,2020,2033.0
+Bomet,2021,2140.0
+Bomet,2022,2204.2
+Bomet,2023,2268.4
+Bomet,2026,2268.4
+Kakamega,2020,2074.8
+Kakamega,2021,2184.0
+Kakamega,2022,2249.5
+Kakamega,2023,2315.0
+Kakamega,2026,2315.0
+Vihiga,2020,1991.2
+Vihiga,2021,2096.0
+Vihiga,2022,2158.9
+Vihiga,2023,2221.8
+Vihiga,2026,2221.8
+Bungoma,2020,2033.0
+Bungoma,2021,2140.0
+Bungoma,2022,2204.2
+Bungoma,2023,2268.4
+Bungoma,2026,2268.4
+Busia,2020,1824.0
+Busia,2021,1920.0
+Busia,2022,1977.6
+Busia,2023,2035.2
+Busia,2026,2035.2
+Siaya,2020,1782.2
+Siaya,2021,1876.0
+Siaya,2022,1932.3
+Siaya,2023,1988.6
+Siaya,2026,1988.6
+Kisumu,2020,1803.1
+Kisumu,2021,1898.0
+Kisumu,2022,1954.9
+Kisumu,2023,2011.9
+Kisumu,2026,2011.9
+Homa Bay,2020,1740.4
+Homa Bay,2021,1832.0
+Homa Bay,2022,1887.0
+Homa Bay,2023,1941.9
+Homa Bay,2026,1941.9
+Migori,2020,1761.3
+Migori,2021,1854.0
+Migori,2022,1909.6
+Migori,2023,1965.2
+Migori,2026,1965.2
+Kisii,2020,2012.1
+Kisii,2021,2118.0
+Kisii,2022,2181.5
+Kisii,2023,2245.1
+Kisii,2026,2245.1
+Nyamira,2020,1970.3
+Nyamira,2021,2074.0
+Nyamira,2022,2136.2
+Nyamira,2023,2198.4
+Nyamira,2026,2198.4
+Nairobi,2020,1615.0
+Nairobi,2021,1700.0
+Nairobi,2022,1751.0
+Nairobi,2023,1802.0
+Nairobi,2026,1802.0

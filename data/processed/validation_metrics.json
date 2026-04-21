@@ -1,0 +1,10 @@
+{
+  "rmse": 45341.09340126266,
+  "mae": 26991.576484988207,
+  "r2": 0.9971861768694391,
+  "residual_std": 45462.164627205406,
+  "rainfall_effect_pct": 9.2933659182004,
+  "subsidy_effect_pct": 18212.917232604228,
+  "scenario_year": 2026,
+  "county_predictions": 47
+}

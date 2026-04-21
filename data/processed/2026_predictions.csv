@@ -1,0 +1,48 @@
+County,Zone,Predicted_Yield_Bags_2026,CI_Lower_90,CI_Upper_90
+Mombasa,Coastal Humid,165840,91282,240398
+Kwale,Coastal Mixed,258964,184406,333522
+Kilifi,Coastal Mixed,298197,223639,372755
+Tana River,Arid (ASAL),119728,45170,194286
+Lamu,Coastal Humid,116807,42249,191365
+Taita Taveta,Semi-Arid,181871,107313,256429
+Garissa,Arid (ASAL),67583,0,142141
+Wajir,Arid (ASAL),53199,0,127757
+Mandera,Arid (ASAL),49804,0,124362
+Marsabit,Arid (ASAL),68567,0,143125
+Isiolo,Arid (ASAL),78764,4206,153322
+Meru,High Altitude,1232031,1157473,1306589
+Tharaka-Nithi,Semi-Arid,391761,317203,466319
+Embu,Central Highlands,729520,654962,804078
+Kitui,Semi-Arid,266444,191887,341002
+Machakos,Semi-Arid,484251,409693,558809
+Makueni,Semi-Arid,395388,320831,469946
+Nyandarua,Central Highlands,979215,904657,1053772
+Nyeri,Central Highlands,1008230,933672,1082788
+Kirinyaga,Central Highlands,881606,807048,956164
+Murang'a,Central Highlands,809702,735144,884260
+Kiambu,Central Highlands,769556,694998,844114
+Turkana,Arid (ASAL),38802,0,113360
+West Pokot,Semi-Arid,317415,242857,391973
+Samburu,Arid (ASAL),75318,760,149876
+Trans Nzoia,High Altitude,3900748,3826190,3975306
+Uasin Gishu,High Altitude,4452913,4378355,4527471
+Elgeyo-Marakwet,High Altitude,727777,653219,802335
+Nandi,High Altitude,1455152,1380594,1529710
+Baringo,Semi-Arid,235001,160443,309559
+Laikipia,Rift Valley,475386,400828,549943
+Nakuru,Rift Valley,2149671,2075113,2224229
+Narok,Rift Valley,943857,869299,1018415
+Kajiado,Semi-Arid,256370,181812,330928
+Kericho,Western High Rainfall,1315416,1240858,1389974
+Bomet,Western High Rainfall,1032370,957812,1106928
+Kakamega,Western High Rainfall,1212206,1137648,1286764
+Vihiga,Western High Rainfall,683097,608539,757655
+Bungoma,Western High Rainfall,1083185,1008627,1157743
+Busia,Lake Basin,726055,651497,800613
+Siaya,Lake Basin,685931,611373,760489
+Kisumu,Lake Basin,668102,593544,742660
+Homa Bay,Lake Basin,573962,499404,648520
+Migori,Lake Basin,618433,543875,692991
+Kisii,Western High Rainfall,929953,855395,1004510
+Nyamira,Western High Rainfall,784648,710090,859206
+Nairobi,Urban Mixed,178690,104132,253248
