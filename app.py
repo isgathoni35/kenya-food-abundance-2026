@@ -468,7 +468,7 @@ with h2:
 # 4. REGIONAL COMPARISON
 # ==========================================
 st.divider()
-st.header("Global Agricultural Paradigms: A Biochemical Comparison")
+st.header("Global Agricultural Comparison")
 st.write("A macro-level analysis of soil chemistry, microbial management, and yield strategies.")
 
 c1, c2, c3 = st.columns(3)
