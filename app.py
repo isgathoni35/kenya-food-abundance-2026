@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 from pathlib import Path
 
 import folium
@@ -305,8 +306,38 @@ st.sidebar.divider()
 # Simulation Controls
 st.sidebar.header("🚜 2026 Yield Simulation")
 st.sidebar.write("Adjust factors to see real-time biochemical impact.")
-rain_factor = st.sidebar.slider("MAM Rainfall Variation", 0.5, 1.5, 1.0, help="1.0 is average, 0.5 is severe drought")
-fert_factor = st.sidebar.slider("Fertilizer Subsidy Impact", 0.5, 1.5, 1.0, help="1.0 is average, 1.5 is ideal distribution")
+
+if "rain_factor" not in st.session_state:
+    st.session_state["rain_factor"] = 1.0
+if "fert_factor" not in st.session_state:
+    st.session_state["fert_factor"] = 1.0
+
+st.sidebar.caption("Quick Presets")
+p1, p2, p3 = st.sidebar.columns(3)
+if p1.button("Drought"):
+    st.session_state["rain_factor"] = 0.7
+    st.session_state["fert_factor"] = 0.9
+if p2.button("Normal"):
+    st.session_state["rain_factor"] = 1.0
+    st.session_state["fert_factor"] = 1.0
+if p3.button("Good"):
+    st.session_state["rain_factor"] = 1.2
+    st.session_state["fert_factor"] = 1.1
+
+rain_factor = st.sidebar.slider(
+    "MAM Rainfall Variation",
+    0.5,
+    1.5,
+    help="1.0 is average, 0.5 is severe drought",
+    key="rain_factor",
+)
+fert_factor = st.sidebar.slider(
+    "Fertilizer Subsidy Impact",
+    0.5,
+    1.5,
+    help="1.0 is average, 1.5 is ideal distribution",
+    key="fert_factor",
+)
 
 
 # ==========================================
@@ -317,6 +348,7 @@ st.write("University of Nairobi | Food and Microbial Biochemistry Analysis")
 st.subheader("Group Members")
 for member in GROUP_MEMBERS:
     st.markdown(f"- {member}")
+st.caption("Data transparency: rainfall uses Open-Meteo; subsidy and yield are documented county-level proxies.")
 
 # Prepare Data (Hypothetical maize yield baseline for major counties)
 mock_data = []
@@ -343,10 +375,15 @@ if prediction_mode:
 else:
     st.caption("Yield base source: baseline county assumptions (prediction file not found)")
 
+if PREDICTIONS_2026_PATH.exists():
+    updated_at = datetime.fromtimestamp(PREDICTIONS_2026_PATH.stat().st_mtime)
+    st.caption(f"Prediction file last updated: {updated_at.strftime('%Y-%m-%d %H:%M:%S')}")
+
 # Layout for Map and Data Table
 col_m, col_t = st.columns([2, 1])
 
 with col_m:
+    st.info("How to read this map: green = higher simulated yield, orange = medium, red = lower. Values are scenario estimates.")
     st.subheader("Interactive Abundance Map")
     kenya_map = folium.Map(location=[0.5, 37.8], zoom_start=6, tiles="CartoDB positron")
 
@@ -407,6 +444,24 @@ with col_t:
                 format="%d"
             )
         }
+    )
+
+st.divider()
+st.subheader("County Highlights")
+h1, h2 = st.columns(2)
+with h1:
+    st.caption("Top 5 counties by simulated yield")
+    st.dataframe(
+        df[["County", "Simulated_Yield"]].sort_values("Simulated_Yield", ascending=False).head(5),
+        use_container_width=True,
+        hide_index=True,
+    )
+with h2:
+    st.caption("Bottom 5 counties by simulated yield")
+    st.dataframe(
+        df[["County", "Simulated_Yield"]].sort_values("Simulated_Yield", ascending=True).head(5),
+        use_container_width=True,
+        hide_index=True,
     )
 
 # ==========================================
