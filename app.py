@@ -186,6 +186,61 @@ def offline_weather_estimate(selected_row):
     est_rain = round(max(selected_row["Base_Rain"] / 90.0, 0.0), 1)
     return est_temp, est_rain
 
+
+def get_zone_crop_suitability():
+    return {
+        "Arid (ASAL)": {
+            "primary": ["sorghum", "millet", "pigeon pea", "green gram"],
+            "secondary": ["drought-tolerant cassava", "goat keeping"],
+            "note": "Best for low-rainfall, heat-tolerant crops and livestock systems.",
+        },
+        "Semi-Arid": {
+            "primary": ["sorghum", "millet", "cowpeas", "pigeon pea"],
+            "secondary": ["cassava", "sunflower"],
+            "note": "Balanced drought tolerance and short-season crops work best here.",
+        },
+        "Coastal Humid": {
+            "primary": ["cassava", "coconut", "beans", "sweet potato"],
+            "secondary": ["banana", "rice"],
+            "note": "Warm and humid conditions support root crops and perennial options.",
+        },
+        "Coastal Mixed": {
+            "primary": ["cassava", "beans", "cowpeas", "groundnuts"],
+            "secondary": ["maize", "banana"],
+            "note": "Mixed rainfall favors resilient crops with flexible planting windows.",
+        },
+        "High Altitude": {
+            "primary": ["maize", "beans", "potatoes", "wheat"],
+            "secondary": ["peas", "barley"],
+            "note": "Cooler, wetter zones are strong for cereals and tubers.",
+        },
+        "Central Highlands": {
+            "primary": ["maize", "beans", "potatoes", "tea"],
+            "secondary": ["coffee", "bananas"],
+            "note": "Reliable rainfall and cool temperatures suit intensive mixed farming.",
+        },
+        "Rift Valley": {
+            "primary": ["maize", "wheat", "barley", "beans"],
+            "secondary": ["sunflower", "dairy fodder"],
+            "note": "Good for cereals and livestock feed where rainfall is moderate.",
+        },
+        "Western High Rainfall": {
+            "primary": ["maize", "beans", "sweet potato", "cassava"],
+            "secondary": ["banana", "groundnuts"],
+            "note": "High rainfall supports maize plus legumes and root crops.",
+        },
+        "Lake Basin": {
+            "primary": ["maize", "cassava", "beans", "sorghum"],
+            "secondary": ["rice", "sweet potato"],
+            "note": "Warm, productive zones with mixed crop options and fisheries links.",
+        },
+        "Urban Mixed": {
+            "primary": ["vegetables", "leafy greens", "beans"],
+            "secondary": ["urban kitchen gardens", "horticulture"],
+            "note": "Small-space, high-value, fast-turnover crops fit urban settings best.",
+        },
+    }
+
 # ==========================================
 # 3. SIDEBAR: THE WEATHER STATION & SIMULATION
 # ==========================================
@@ -489,3 +544,32 @@ with c3:
     st.write("**System:** Industrial Scale & Genetic Engineering")
     st.write("**Biochemical Reality:** Maximizes yield per acre through intensive, variable-rate application of synthetic nutrients (N-P-K). Deeply reliant on transgenic (GMO) crop strains engineered for drought tolerance and pest resistance (e.g., Bt proteins).")
     st.write("**Microbial Impact:** While precision agriculture technology minimizes chemical waste, the sheer scale of monoculture often requires targeted microbial inoculants to restore soil health in heavily farmed agricultural belts.")
+
+st.divider()
+st.header("Zone-Based Crop Suitability Guide")
+st.write("This is a simple suitability guide for the county zone you selected. It does not change the maize model above.")
+
+zone_suitability = get_zone_crop_suitability()
+selected_zone = str(selected_row.get("Zone", "Unknown"))
+zone_info = zone_suitability.get(
+    selected_zone,
+    {
+        "primary": ["local staple crops"],
+        "secondary": ["mixed farming options"],
+        "note": "No zone-specific match found; use local agronomic advice.",
+    },
+)
+
+st.subheader(f"Selected County: {selected_c}")
+st.write(f"**Zone:** {selected_zone}")
+st.write(f"**Recommended crops:** {', '.join(zone_info['primary'])}")
+st.write(f"**Other suitable options:** {', '.join(zone_info['secondary'])}")
+st.caption(zone_info["note"])
+st.info("Yield simulation stays maize-focused. This guide is only for crop suitability context.")
+
+st.subheader("All Zones at a Glance")
+for zone_name, zone_details in zone_suitability.items():
+    with st.expander(zone_name):
+        st.write(f"**Recommended crops:** {', '.join(zone_details['primary'])}")
+        st.write(f"**Other suitable options:** {', '.join(zone_details['secondary'])}")
+        st.caption(zone_details["note"])
