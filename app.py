@@ -421,21 +421,3 @@ with c2:
 with c3:
     st.subheader("🇺🇸 America")
     st.write("**Model:** Industrial & Genetic. Relies on GMO drought-resistance and massive irrigation infrastructure.")
-
-st.divider()
-st.header("Model Evidence")
-metrics = load_model_metrics(Path(__file__).resolve().parent / "data" / "processed" / "validation_metrics.json")
-coefficients = load_model_coefficients(Path(__file__).resolve().parent / "data" / "processed" / "model_coefficients.csv")
-
-if metrics:
-    m1, m2, m3, m4 = st.columns(4)
-    m1.metric("RMSE", f"{metrics.get('rmse', 0):,.0f}")
-    m2.metric("MAE", f"{metrics.get('mae', 0):,.0f}")
-    m3.metric("R²", f"{metrics.get('r2', 0):.3f}")
-    m4.metric("Counties", f"{metrics.get('county_predictions', 0)}")
-    st.caption("This panel reads from the generated files in data/processed/.")
-else:
-    st.info("Run the prediction pipeline to generate model metrics and coefficients.")
-
-if not coefficients.empty:
-    st.dataframe(coefficients.head(12), use_container_width=True, hide_index=True)
