@@ -25,6 +25,7 @@ GROUP_MEMBERS = [
     "Matilda Valerie Odalo - H12/3174/2022",
     "Gathoni Elias Warutere - H12/1790/2022",
     "Brianna Muchiku - H12/1777/2022",
+    "Caesar Osebe - H12/2640/2021",
 ]
 
 # 1.1 Custom Theme Fix (To ensure dark mode with custom primary color)
