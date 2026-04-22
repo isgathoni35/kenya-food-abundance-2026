@@ -408,16 +408,28 @@ with col_t:
         }
     )
 
-# 5. Global Comparison Section
+# ==========================================
+# 4. REGIONAL COMPARISON
+# ==========================================
 st.divider()
 st.header("Global Agricultural Paradigms: A Biochemical Comparison")
+st.write("A macro-level analysis of soil chemistry, microbial management, and yield strategies.")
+
 c1, c2, c3 = st.columns(3)
 with c1:
     st.subheader("🇰🇪 Kenya")
-    st.write("**Model:** Rain-fed & Subsidy-Driven. Focuses on maximizing Nitrogen/Phosphorus uptake for staple biomass.")
+    st.write("**System:** Rain-fed Smallholder & Subsidy-Driven")
+    st.write("**Biochemical Reality:** Cultivated soils often experience nitrogen depletion and high acidity. The strategy relies heavily on inorganic inputs (DAP/CAN fertilizers) provided via government subsidies to rapidly correct macronutrient deficits.")
+    st.write("**Microbial Impact:** High reliance on synthetic fertilizers can temporarily suppress native soil microbiome diversity, making the crops highly dependent on external inputs and the MAM rainfall onset for nutrient transport.")
+
 with c2:
     st.subheader("🇪🇺 Europe")
-    st.write("**Model:** Precision 'Farm to Fork'. Focuses on Nitrogen Use Efficiency (NUE) and microbial soil health.")
+    st.write("**System:** Precision 'Farm to Fork' & Regulated")
+    st.write("**Biochemical Reality:** Strict EU 'Nitrates Directives' limit synthetic nitrogen application to prevent aquatic eutrophication. The focus has shifted toward Nitrogen Use Efficiency (NUE) and organic bio-stimulants.")
+    st.write("**Microbial Impact:** Agricultural policies actively promote the preservation of the soil microbiome, encouraging crop rotation and organic farming to naturally fix soil nitrogen and maintain long-term carbon sequestration.")
+
 with c3:
     st.subheader("🇺🇸 America")
-    st.write("**Model:** Industrial & Genetic. Relies on GMO drought-resistance and massive irrigation infrastructure.")
+    st.write("**System:** Industrial Scale & Genetic Engineering")
+    st.write("**Biochemical Reality:** Maximizes yield per acre through intensive, variable-rate application of synthetic nutrients (N-P-K). Deeply reliant on transgenic (GMO) crop strains engineered for drought tolerance and pest resistance (e.g., Bt proteins).")
+    st.write("**Microbial Impact:** While precision agriculture technology minimizes chemical waste, the sheer scale of monoculture often requires targeted microbial inoculants to restore soil health in heavily farmed agricultural belts.")
